@@ -1,4 +1,5 @@
 <script lang="ts">
+	import FeedbackForm from "./components/FeedbackForm.svelte";
 	import FeedbackList from "./components/FeedbackList.svelte";
 	import FeedbackStats from "./components/FeedbackStats.svelte";
 	let feedback = [
@@ -18,6 +19,16 @@
 			text: "Cupidatat deserunt nulla consectetur aute est non aliqua fugiat dolore magna cupidatat elit occaecat.",
 		},
 	];
+	const handleSubmit = (e) => {
+		feedback = [
+			...feedback,
+			{
+				id: feedback.length + 1,
+				rating: e.detail.rating,
+				text: e.detail.text,
+			},
+		];
+	};
 	const deleteListItem = (e) => {
 		feedback = feedback.filter((f) => f.id !== e.detail);
 	};
@@ -26,10 +37,15 @@
 	$: avg = Math.round(feedback.reduce((cv, pv) => pv.rating + cv, 0) / count);
 </script>
 
-<main>
+<main class="main">
+	<FeedbackForm on:submit-form={handleSubmit} />
 	<FeedbackStats {avg} {count} />
 	<FeedbackList {feedback} on:delete-list-item={deleteListItem} />
 </main>
 
 <style>
+	.main {
+		padding: 2rem;
+		max-width: 50vw;
+	}
 </style>
