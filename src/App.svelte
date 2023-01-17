@@ -45,7 +45,11 @@
 
 <style>
 	.main {
-		padding: 2rem;
-		max-width: 50vw;
+		max-width: 75vw;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-content: center;
+		margin: 0 auto;
 	}
 </style>
