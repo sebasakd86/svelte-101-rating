@@ -1,11 +1,13 @@
 <script>
 	import { createEventDispatcher } from "svelte";
+	import { FeedbackStore } from "../store";
 	import Card from "./Card.svelte";
 	export let item = {};
 	const dispatch = createEventDispatcher();
 	const handleDelete = (id) => {
-		console.log(id);
-		dispatch("delete-list-item", id);
+		// console.log(id);
+		// dispatch("delete-list-item", id);
+		FeedbackStore.update((cv) => cv.filter((f) => f.id !== id));
 	};
 </script>
 
@@ -36,7 +38,5 @@
 		border: 1px solid white;
 		border-radius: 50%;
 		padding: 0.5rem;
-	}
-	.text-display {
 	}
 </style>

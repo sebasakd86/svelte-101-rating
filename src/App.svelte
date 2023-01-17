@@ -18,9 +18,9 @@
 			},
 		];
 	};
-	const deleteListItem = (e) => {
-		feedback = feedback.filter((f) => f.id !== e.detail);
-	};
+	// const deleteListItem = (e) => {
+	// 	feedback = feedback.filter((f) => f.id !== e.detail);
+	// };
 
 	$: count = feedback.length;
 	$: avg = Math.round(feedback.reduce((cv, pv) => pv.rating + cv, 0) / count);
@@ -29,7 +29,7 @@
 <main class="main">
 	<FeedbackForm on:submit-form={handleSubmit} />
 	<FeedbackStats {avg} {count} />
-	<FeedbackList on:delete-list-item={deleteListItem} />
+	<FeedbackList />
 </main>
 
 <style>

@@ -4,18 +4,17 @@
 	import FeedbackItem from "./FeedbackItem.svelte";
 	import { onDestroy } from "svelte";
 	let feedback = [];
-	const unsubscribe = FeedbackStore.subscribe((data) => (feedback = data));
+	// const unsubscribe = FeedbackStore.subscribe((data) => (feedback = data));
 
-	onDestroy(() => {
-		unsubscribe();
-	});
+	// onDestroy(() => { unsubscribe(); });
 	// onMount(() => {})
 
 	console.log(feedback);
 </script>
 
-{#each feedback as item (item.id)}
+<!-- unsubscribe automatically -->
+{#each $FeedbackStore as item (item.id)}
 	<div in:scale out:fade={{ duration: 200 }}>
-		<FeedbackItem {item} on:delete-list-item />
+		<FeedbackItem {item} />
 	</div>
 {/each}
