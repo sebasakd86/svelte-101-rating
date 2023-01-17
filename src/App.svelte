@@ -2,23 +2,9 @@
 	import FeedbackForm from "./components/FeedbackForm.svelte";
 	import FeedbackList from "./components/FeedbackList.svelte";
 	import FeedbackStats from "./components/FeedbackStats.svelte";
-	let feedback = [
-		{
-			id: 1,
-			rating: 8,
-			text: "Nisi magna magna est ut sint elit.",
-		},
-		{
-			id: 2,
-			rating: 7,
-			text: "Amet elit in mollit qui sunt fugiat sint incididunt.",
-		},
-		{
-			id: 3,
-			rating: 10,
-			text: "Cupidatat deserunt nulla consectetur aute est non aliqua fugiat dolore magna cupidatat elit occaecat.",
-		},
-	];
+	import { FeedbackStore } from "./store";
+	let feedback = [];
+	FeedbackStore.subscribe((data) => (feedback = data));
 	const handleSubmit = (e) => {
 		feedback = [
 			...feedback,
@@ -43,7 +29,7 @@
 <main class="main">
 	<FeedbackForm on:submit-form={handleSubmit} />
 	<FeedbackStats {avg} {count} />
-	<FeedbackList {feedback} on:delete-list-item={deleteListItem} />
+	<FeedbackList on:delete-list-item={deleteListItem} />
 </main>
 
 <style>
