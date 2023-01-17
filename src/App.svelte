@@ -22,13 +22,13 @@
 	// 	feedback = feedback.filter((f) => f.id !== e.detail);
 	// };
 
-	$: count = feedback.length;
-	$: avg = Math.round(feedback.reduce((cv, pv) => pv.rating + cv, 0) / count);
+	// $: count = feedback.length;
+	// $: avg = Math.round(feedback.reduce((cv, pv) => pv.rating + cv, 0) / count);
 </script>
 
 <main class="main">
 	<FeedbackForm on:submit-form={handleSubmit} />
-	<FeedbackStats {avg} {count} />
+	<FeedbackStats />
 	<FeedbackList />
 </main>
 
