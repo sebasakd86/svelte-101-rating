@@ -1,8 +1,7 @@
 <script>
 	import Card from "./Card.svelte";
 	import SelectRating from "./SelectRating.svelte";
-	import { createEventDispatcher } from "svelte";
-	let dispatch = createEventDispatcher();
+	import { FeedbackStore } from "../store";
 	let text = "";
 	let rating = 10;
 	$: btnDisabled = text.trim().length < 10;
@@ -11,10 +10,16 @@
 	};
 	const handleSubmit = () => {
 		if (text.trim().length > 10) {
-			dispatch("submit-form", {
-				text,
+			const id = $FeedbackStore.reduce(
+				(cv, pv) => (pv.id > cv ? pv.id + 1 : cv + 1),
+				1
+			);
+			const nf = {
+				id,
 				rating,
-			});
+				text,
+			};
+			FeedbackStore.update((cv) => [...cv, nf]);
 		}
 	};
 </script>

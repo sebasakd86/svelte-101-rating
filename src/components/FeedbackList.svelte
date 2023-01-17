@@ -2,14 +2,6 @@
 	import { FeedbackStore } from "../store";
 	import { fade, scale } from "svelte/transition";
 	import FeedbackItem from "./FeedbackItem.svelte";
-	import { onDestroy } from "svelte";
-	let feedback = [];
-	// const unsubscribe = FeedbackStore.subscribe((data) => (feedback = data));
-
-	// onDestroy(() => { unsubscribe(); });
-	// onMount(() => {})
-
-	console.log(feedback);
 </script>
 
 <!-- unsubscribe automatically -->
