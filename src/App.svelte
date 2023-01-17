@@ -23,7 +23,10 @@
 		feedback = [
 			...feedback,
 			{
-				id: feedback.length + 1,
+				id: feedback.reduce(
+					(cv, pv) => (pv.id > cv ? pv.id + 1 : cv + 1),
+					1
+				),
 				rating: e.detail.rating,
 				text: e.detail.text,
 			},

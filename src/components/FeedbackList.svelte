@@ -1,4 +1,5 @@
 <script>
+	import { fade, scale } from "svelte/transition";
 	import FeedbackItem from "./FeedbackItem.svelte";
 	export let feedback = [];
 
@@ -6,5 +7,7 @@
 </script>
 
 {#each feedback as item (item.id)}
-	<FeedbackItem {item} on:delete-list-item />
+	<div in:scale out:fade={{ duration: 200 }}>
+		<FeedbackItem {item} on:delete-list-item />
+	</div>
 {/each}
